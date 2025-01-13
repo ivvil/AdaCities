@@ -20,7 +20,12 @@
       devShells.default = pkgs.mkShell {
         packages = with pkgs; [
           gprbuild
+          alire
           gnat
+          # glibc.static
+          # gcc
+          # binutils
+          gmp
         ];
       };
     });
