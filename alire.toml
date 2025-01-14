@@ -2,11 +2,17 @@ name = "adacities"
 description = "A neocities static site generator"
 version = "0.1.0-dev"
 
-authors = ["Iván Villagrasa"]
-maintainers = ["Iván Villagrasa <ivvil412@gmail.com>"]
+authors = ["Ivan Villagrasa"]
+maintainers = ["Ivan Villagrasa <ivvil412@gmail.com>"]
 maintainers-logins = ["ivvil"]
 licenses = "MIT OR Apache-2.0 WITH LLVM-exception"
 website = ""
 tags = ["neocities", "web"]
 
 executables = ["adacities"]
+
+[[depends-on]]
+utilada = "^2.8.0"
+
+[[depends-on]]
+utilada_curl = "^2.5.0"
