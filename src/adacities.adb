@@ -1,12 +1,30 @@
 with Ada.Text_IO;
+with Util.Http.Clients;
+with Util.Http.Clients.AWS;
+with Ada.Command_Line;
 
 procedure Adacities is
-   function Site_Info (Site : String) return String is
-      Url : String := "https://neocities.org/api/info?sitename=" & Site;
-   begin
-      --  return Util.Http.Get(Url).Get_Body;
-      return Url;
-   end Site_Info;
+   Count : constant Natural := Ada.Command_Line.Argument_Count;
 begin
-   Ada.Text_IO.Put_Line (Site_Info ("hii"));
+   if Count = 0 then
+      Ada.Text_IO.Put_Line ("Usage: user passwd site ...");
+      Ada.Text_IO.Put_Line ("Example: wget http://www.adacore.com");
+      return;
+   end if;
+   Util.Http.Clients.Aws.Register;
+   for I in 2 .. Count loop
+      declare
+         Http     : Util.Http.Clients.Client;	
+		 User	  : constant String := Ada.Command_Line.Argument (1);	
+		 Passwd	  : constant String := Ada.Command_Line.Argument (2);
+         URI      : constant String := "https://" & User & ":" & Passwd & "@neocities.org/api/info";
+         Response : Util.Http.Clients.Response;
+      begin
+         Http.Add_Header ("X-Requested-By", "wget");	
+		 Ada.Text_Io.Put_Line ("URL: " & URI);
+         Http.Get (URI, Response);
+         Ada.Text_IO.Put_Line ("Code: " & Natural'Image (Response.Get_Status));
+         Ada.Text_IO.Put_Line (Response.Get_Body);
+      end;
+   end loop;
 end Adacities;

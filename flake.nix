@@ -26,6 +26,7 @@
           # gcc
           # binutils
           gmp
+          openssl
         ];
       };
     });

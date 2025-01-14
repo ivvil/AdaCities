@@ -15,4 +15,7 @@ executables = ["adacities"]
 utilada = "^2.8.0"
 
 [[depends-on]]
-utilada_curl = "^2.5.0"
+utilada_aws = "^2.1.0"
+
+[[depends-on]]
+aws = "^24.0.0"
