@@ -1,6 +1,6 @@
 with Ada.Text_IO;
 with Util.Http.Clients;
-with Util.Http.Clients.AWS;
+with Util.Http.Clients.Curl;
 with Ada.Command_Line;
 
 procedure Adacities is
@@ -11,13 +11,13 @@ begin
       Ada.Text_IO.Put_Line ("Example: wget http://www.adacore.com");
       return;
    end if;
-   Util.Http.Clients.Aws.Register;
+   Util.Http.Clients.Curl.Register;
    for I in 2 .. Count loop
       declare
          Http     : Util.Http.Clients.Client;	
 		 User	  : constant String := Ada.Command_Line.Argument (1);	
 		 Passwd	  : constant String := Ada.Command_Line.Argument (2);
-         URI      : constant String := "https://" & User & ":" & Passwd & "@neocities.org/api/info";
+         URI      : constant String := "https://" & User & ":" & Passwd & "@neocities.org/api/key";
          Response : Util.Http.Clients.Response;
       begin
          Http.Add_Header ("X-Requested-By", "wget");	

@@ -27,6 +27,7 @@
           # binutils
           gmp
           openssl
+          curl
         ];
       };
     });
